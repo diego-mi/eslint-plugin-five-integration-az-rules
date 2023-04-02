@@ -1,0 +1,6 @@
+# IntelliJ
+.idea/
+
+# NPM
+node_modules/
+yarn.lock
