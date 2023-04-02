@@ -11,7 +11,6 @@
 const rule = require("../../../lib/rules/integration-converter-name-prefix"),
   RuleTester = require("eslint").RuleTester;
 
-
 //------------------------------------------------------------------------------
 // Tests
 //------------------------------------------------------------------------------
@@ -27,6 +26,21 @@ ruleTester.run("integration-converter-name-prefix", rule, {
       filename: 'src/component/converters/TestConvert.ts',
       code: '"hello world";'
     },
+    {
+      filename: 'src/component/converters/TestConvert.ts',
+      code: 'export default class FooConverter {};',
+      parserOptions: {ecmaVersion: 6, sourceType: "module"}
+    },
+    {
+      code: 'class Foo {};',
+      filename: "/some/dir/foo.js",
+      parserOptions: {ecmaVersion: 6},
+    },
+    {
+      code: 'class FooConverter {};',
+      filename: "src/component/converters/foo.js",
+      parserOptions: {ecmaVersion: 6},
+    },
   ],
 
   invalid: [
@@ -38,7 +52,16 @@ ruleTester.run("integration-converter-name-prefix", rule, {
           messageId: 'needConverterPrefix',
         }
       ]
-      ,
+    },
+    {
+      code: 'class FooConvert {};',
+      filename: "src/core/b2c/integration/domain/converters/foo.js",
+      parserOptions: {ecmaVersion: 6},
+      errors: [
+        {
+          messageId: 'needConverterPrefix',
+        }
+      ]
     },
   ],
 });

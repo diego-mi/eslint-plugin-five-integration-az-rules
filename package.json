@@ -1,6 +1,6 @@
 {
   "name": "eslint-plugin-five-integration-az-rules",
-  "version": "0.0.0",
+  "version": "0.0.2",
   "description": "Rules for integration files by 5by5",
   "keywords": [
     "eslint",
